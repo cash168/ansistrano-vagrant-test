@@ -1,0 +1,7 @@
+---
+
+- block:
+
+    - include_tasks: nginx.install.yml
+      tags:
+        - nginx.install

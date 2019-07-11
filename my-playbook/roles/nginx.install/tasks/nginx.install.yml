@@ -1,0 +1,22 @@
+---
+
+- block:
+  - name: nginx.install
+    shell: sudo apt update && sudo apt install nginx -y
+
+  - name: fix perm
+    shell: sudo chmod -R 777 /usr/share/nginx
+
+  - name: Clean html path
+    file:
+      state: absent
+      path: "/usr/share/nginx/html"
+
+- name: Create a symbolic link
+  file:
+    src: /tmp/my-app.com/current/my-app
+    dest: /usr/share/nginx/html
+#    owner: apache
+#    group: apache
+    state: link
+    force: yes
